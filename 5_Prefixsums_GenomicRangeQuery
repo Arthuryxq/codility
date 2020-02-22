@@ -1,0 +1,44 @@
+vector<int> solution(string &S, vector<int> &P, vector<int> &Q) {
+    vector<int> result;
+    int A_count = 0;
+    int C_count = 0;
+    int G_count = 0;
+    int T_count = 0;
+    vector<int> A_pre_sum, C_pre_sum, G_pre_sum, T_pre_sum;
+    for (int i = 0; i < S.size(); i++) {
+        switch (S[i]) {
+            case 'A': {
+                A_count++;
+            }
+            break;
+            case 'C': {
+                C_count++;
+            }
+            break;
+            case 'G': {
+                G_count++;
+            }
+            break;
+            case 'T': {
+                T_count++;
+            }
+            break;
+        }
+        A_pre_sum.push_back(A_count);
+        C_pre_sum.push_back(C_count);
+        G_pre_sum.push_back(G_count);
+        T_pre_sum.push_back(T_count);
+    }
+    for (int i = 0; i < P.size(); i++) {
+        if (S[P[i]] == 'A' || A_pre_sum[Q[i]] - A_pre_sum[P[i]] > 0) {
+            result.push_back(1);
+        } else if (S[P[i]] == 'C' || C_pre_sum[Q[i]] - C_pre_sum[P[i]] > 0) {
+            result.push_back(2);
+        } else if (S[P[i]] == 'G' || G_pre_sum[Q[i]] - G_pre_sum[P[i]] > 0) {
+            result.push_back(3);
+        } else {
+            result.push_back(4);
+        }
+    }
+    return result;
+}
