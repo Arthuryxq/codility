@@ -1,0 +1,7 @@
+int solution(int A, int B, int K) {
+    if (A % K== 0) {
+            return (B - A) / K + 1;
+        } else { // (A / K) * K is the last divisible value before A, so no need to plue one compared to above case
+            return (B - (A / K) * K) / K;
+        }
+}
